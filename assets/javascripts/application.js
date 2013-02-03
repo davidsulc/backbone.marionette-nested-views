@@ -4,6 +4,12 @@ MyApp.addRegions({
   mainRegion: "#content"
 });
 
+Hero = Backbone.Model.extend({});
+
+Heroes = Backbone.Collection.extend({
+  model: Hero
+});
+
 HeroView = Backbone.Marionette.ItemView.extend({
   template: "#accordion-group-template"
 });
