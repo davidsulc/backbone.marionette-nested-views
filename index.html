@@ -94,6 +94,17 @@
           ]
         }
       ]
+
+      MyApp.addInitializer(function(options){
+        var heroes = new Heroes(options.heroes);
+        
+        var accordionView = new AccordionView({
+          collection: heroes
+        });
+        MyApp.mainRegion.show(accordionView);
+      });
+
+      MyApp.start({heroes: heroes});
     </script>
   </body>
 </html>
