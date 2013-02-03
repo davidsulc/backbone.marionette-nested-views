@@ -10,6 +10,10 @@ Heroes = Backbone.Collection.extend({
   model: Hero
 });
 
+VillainView = Backbone.Marionette.ItemView.extend({
+  template: "#villain-template"
+});
+
 HeroView = Backbone.Marionette.CompositeView.extend({
   template: "#accordion-group-template",
   
