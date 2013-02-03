@@ -27,6 +27,10 @@ HeroView = Backbone.Marionette.CompositeView.extend({
     'click a': 'logInfoUrl'
   },
   
+  initialize: function(){
+    this.collection = this.model.get('villains');
+  },
+  
   logInfoUrl: function(){
     console.log(this.model.get('info_url'));
   }
