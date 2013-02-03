@@ -17,7 +17,15 @@ Heroes = Backbone.Collection.extend({
 });
 
 VillainView = Backbone.Marionette.ItemView.extend({
-  template: "#villain-template"
+  template: "#villain-template",
+  
+  events: {
+    'click li': 'logInfoUrl'
+  },
+  
+  logInfoUrl: function(){
+    console.log(this.model.get('info_url'));
+  }
 });
 
 HeroView = Backbone.Marionette.CompositeView.extend({
