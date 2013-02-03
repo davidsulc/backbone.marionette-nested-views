@@ -4,6 +4,12 @@ MyApp.addRegions({
   mainRegion: "#content"
 });
 
+Villain = Backbone.Model.extend({});
+
+Villains = Backbone.Collection.extend({
+  model: Villain
+});
+
 Hero = Backbone.Model.extend({});
 
 Heroes = Backbone.Collection.extend({
