@@ -109,6 +109,14 @@
       MyApp.addInitializer(function(options){
         var heroes = new Heroes(options.heroes);
         
+        // each hero's villains must be a backbone collection
+        // we initialize them here
+        heroes.each(function(hero){
+          var villains = hero.get('villains');
+          var villainCollection = new Villains(villains);
+          hero.set('villains', villainCollection);
+        });
+        
         var accordionView = new AccordionView({
           collection: heroes
         });
