@@ -19,6 +19,10 @@ HeroView = Backbone.Marionette.CompositeView.extend({
   
   className: "accordion-group",
   
+  itemView: VillainView,
+  
+  itemViewContainer: "ul",
+  
   events: {
     'click a': 'logInfoUrl'
   },
