@@ -19,6 +19,12 @@
     <div id="content">
     </div>
     
+    <script type="text/template" id="accordion-group-template">
+      <div class="accordion-heading">
+        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#heroList" href="#hero<%= id %>"><%= name %></a>
+      </div>
+    </script>
+    
     <script type="text/javascript">
       var heroes = [
         {
