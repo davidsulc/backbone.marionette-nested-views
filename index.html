@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Superheroes and villains</title>
+
+    <script src="./assets/javascripts/vendor/jquery.js"></script>
+    <script src="./assets/javascripts/vendor/json2.js"></script>
+    <script src="./assets/javascripts/vendor/underscore.js"></script>
+    <script src="./assets/javascripts/vendor/backbone.js"></script>
+    <script src="./assets/javascripts/vendor/backbone.marionette.js"></script>
+    <script src="./assets/javascripts/vendor/bootstrap.js"></script>
+
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <script src="./assets/javascripts/application.js"></script>
+  </head>
+  <body>
+    <div id="content">
+    </div>
+  
+    <script type="text/template" id="villain-template">
+      <%= name %>
+    </script>
+    
+    <script type="text/template" id="accordion-group-template">
+      <div class="accordion-heading">
+        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#heroList" href="#hero<%= id %>"><%= name %></a>
+      </div>
+      
+      <div id="hero<%= id %>" class="accordion-body collapse" style="height: 0px;">
+          <div class="accordion-inner">
+            <ul>
+            </ul>
+          </div>
+      </div>
+    </script>
+    
+    <script type="text/javascript">
+      var heroes = [
+        {
+          "id": "1",
+          "name": "Batman",
+          "info_url": "http://en.wikipedia.org/wiki/Batman",
+          "villains": [
+            {
+              "id": "100",
+              "name": "Bane",
+              "info_url": "http://en.wikipedia.org/wiki/Bane_(comics)"
+            },
+            {
+              "id": "101",
+              "name": "Ra's Al Ghul",
+              "info_url": "http://en.wikipedia.org/wiki/Ra%27s_al_Ghul"
+            },
+            {
+              "id": "102",
+              "name": "The Joker",
+              "info_url": "http://en.wikipedia.org/wiki/Joker_(comics)"
+            },
+            {
+              "id": "103",
+              "name": "The Riddler",
+              "info_url": "http://en.wikipedia.org/wiki/Riddler"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Spider-Man",
+          "info_url": "http://en.wikipedia.org/wiki/Spider-Man",
+          "villains": [
+            {
+              "id": "200",
+              "name": "Green Goblin",
+              "info_url": "http://en.wikipedia.org/wiki/Green_Goblin"
+            },
+            {
+              "id": "201",
+              "name": "Venom",
+              "info_url": "http://en.wikipedia.org/wiki/Venom_(Marvel_Comics)"
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Wonder Woman",
+          "info_url": "http://en.wikipedia.org/wiki/Wonderwoman",
+          "villains": [
+            {
+              "id": "300",
+              "name": "Ares",
+              "info_url": "http://en.wikipedia.org/wiki/Ares_(DC_Comics)"
+            },
+            {
+              "id": "301",
+              "name": "Doctor Psycho",
+              "info_url": "http://en.wikipedia.org/wiki/Doctor_Psycho"
+            },
+            {
+              "id": "302",
+              "name": "Silver Swan",
+              "info_url": "http://en.wikipedia.org/wiki/Silver_Swan_(comics)"
+            }
+          ]
+        }
+      ]
+
+      MyApp.addInitializer(function(options){
+        var heroes = new Heroes(options.heroes);
+        
+        // each hero's villains must be a backbone collection
+        // we initialize them here
+        heroes.each(function(hero){
+          var villains = hero.get('villains');
+          var villainCollection = new Villains(villains);
+          hero.set('villains', villainCollection);
+        });
+        
+        var accordionView = new AccordionView({
+          collection: heroes
+        });
+        MyApp.mainRegion.show(accordionView);
+      });
+
+      MyApp.start({heroes: heroes});
+    </script>
+  </body>
+</html>
