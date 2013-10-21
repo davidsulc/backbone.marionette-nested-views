@@ -21,7 +21,7 @@ VillainView = Backbone.Marionette.ItemView.extend({
   tagName: "li",
   
   events: {
-    'click li': 'logInfoUrl'
+    'click': 'logInfoUrl'
   },
   
   logInfoUrl: function(){
