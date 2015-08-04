@@ -35,9 +35,9 @@ HeroView = Backbone.Marionette.CompositeView.extend({
   
   className: "accordion-group",
   
-  itemView: VillainView,
+  childView: VillainView,
   
-  itemViewContainer: "ul",
+  childViewContainer: "ul",
   
   events: {
     'click a': 'logInfoUrl'
@@ -57,5 +57,5 @@ AccordionView = Backbone.Marionette.CollectionView.extend({
   
   className: "accordion",
   
-  itemView: HeroView
+  childView: HeroView
 });
